@@ -1,5 +1,6 @@
 package net.fanzhiwei.mylib.patterns;
 
+import com.google.common.collect.HashMultiset;
 import net.fanzhiwei.mylib.patterns.ImmutableReminder;
 import org.junit.Test;
 
@@ -8,14 +9,14 @@ import java.util.Date;
 /**
  * User: zhiweifan
  * Date: 14-5-22
- * Time: ÏÂÎç3:41
+ * Time: ä¸‹åˆ3:41
  */
-public class ImmutableReminderTest {
+public class ImmutableObjectTest {
 
     @Test
     public void immutableReminderFalseTest () {
 
-        //¿É±ä¶ÔÏó´«Èë£¬µ±¿É±ä¶ÔÏó¸Ä±äÊ±£¬Êä³ö½á¹ûµÄ±ä»¯
+        //å¯å˜å¯¹è±¡ä¼ å…¥ï¼Œå½“å¯å˜å¯¹è±¡æ”¹å˜æ—¶ï¼Œè¾“å‡ºç»“æœçš„å˜åŒ–
         Date date = new Date(1550746230225l);
         ImmutableReminder ir = new ImmutableReminder(date,false);
         System.out.println(ir.getRemindingDate());
@@ -26,7 +27,7 @@ public class ImmutableReminderTest {
     @Test
     public void immutableReminderTrueTest () {
 
-        //±ÜÃâÊ¹ÓÃ¿É±ä¶ÔÏó
+        //é¿å…ä½¿ç”¨å¯å˜å¯¹è±¡
         Date date = new Date(1550746230225l);
         ImmutableReminder ir = new ImmutableReminder(date,true);
         System.out.println(ir.getRemindingDate());

@@ -2,17 +2,17 @@ package net.fanzhiwei.mylib.guava;
 
 import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import com.google.common.base.Predicate;
+import com.google.common.collect.*;
+
 import static com.google.common.collect.Sets.SetView;
+
 import com.google.common.primitives.Ints;
+import net.fanzhiwei.mylib.dto.TestDTO;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * User: zhiweifan
@@ -44,6 +44,7 @@ public class GuavaCollectionsTest {
         Map<String, Integer> eurPriceMap = ImmutableMap.of("a", 4, "b", 9);
         Map<String, Double> usdPriceMap = Maps.transformValues(eurPriceMap, new Function<Integer, Double>() {
             double eurToUsd = 1.4888;
+
             public Double apply(final Integer from) {
                 return from * eurToUsd;
             }
@@ -84,33 +85,136 @@ public class GuavaCollectionsTest {
     }
 
     @Test
-    public void Preconditions() throws Exception {
+    public void Preconditions() {
 
-        getPersonByPrecondition(8,"peida");
+        getPersonByPrecondition(8, "peida");
 
         try {
-            getPersonByPrecondition(-9,"peida");
+            getPersonByPrecondition(-9, "peida");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         try {
-            getPersonByPrecondition(8,"");
+            getPersonByPrecondition(8, "");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         try {
-            getPersonByPrecondition(8,null);
+            getPersonByPrecondition(8, null);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void getPersonByPrecondition(int age,String neme)throws Exception{
+    public static void getPersonByPrecondition(int age, String neme) {
         Preconditions.checkNotNull(neme, "neme为null");
-        Preconditions.checkArgument(neme.length()>0, "neme为\'\'");
-        Preconditions.checkArgument(age>0, "age 必须大于0");
-        System.out.println("a person age:"+age+",neme:"+neme);
+        Preconditions.checkArgument(neme.length() > 0, "neme为\'\'");
+        Preconditions.checkArgument(age > 0, "age 必须大于0");
+        System.out.println("a person age:" + age + ",neme:" + neme);
+    }
+
+    //        Multimap的实现
+//    　　Multimap提供了丰富的实现，所以你可以用它来替代程序里的Map<K, Collection<V>>，具体的实现如下：
+//        Implementation            Keys 的行为类似       　　　Values的行为类似
+//    　　ArrayListMultimap         HashMap                   　　ArrayList
+//    　　HashMultimap               HashMap                  　　 HashSet
+//    　　LinkedListMultimap        LinkedHashMap*              LinkedList*
+//        LinkedHashMultimap        LinkedHashMap                LinkedHashSet
+//    　　TreeMultimap                TreeMap                          TreeSet
+//    　　ImmutableListMultimap      ImmutableMap                 ImmutableList
+//    　　ImmutableSetMultimap       ImmutableMap                 ImmutableSet
+    @Test
+    public void multiMapTest() {
+        Multimap<String, TestDTO> multimap = ArrayListMultimap.create();
+        TestDTO d1 = new TestDTO();
+        d1.setStr("d1");
+        multimap.put("aa", d1);
+        TestDTO d2 = new TestDTO();
+        d2.setStr("d2");
+        multimap.put("aa", d2);
+//        Map<String,Collection<TestDTO>> result =  multimap.asMap();
+        List<TestDTO> list = (List<TestDTO>) multimap.get("aa");
+        for (TestDTO testDto : list) {
+            System.out.println(testDto.getStr());
+        }
+    }
+
+    @Test
+    public void multisetTest() {
+//        常用实现 Multiset 接口的类有：
+//        HashMultiset: 元素存放于 HashMap
+//        LinkedHashMultiset: 元素存放于 LinkedHashMap，即元素的排列顺序由第一次放入的顺序决定
+//        TreeMultiset:元素被排序存放于TreeMap
+//        EnumMultiset: 元素必须是 enum 类型
+//        ImmutableMultiset: 不可修改的 Mutiset
+        //统计相同对象，如字符串在 List里面出现的次数
+        ImmutableList<String> ofList = ImmutableList.of("a", "b", "a", "d");
+        HashMultiset<String> multiSet = HashMultiset.create();
+        multiSet.addAll(ofList);
+        //count word “a”
+        System.out.println(multiSet.count("a"));
+        multiSet.setCount("a", 100);
+        multiSet.add("a");
+        //count word “a”
+        System.out.println(multiSet.count("a"));
+    }
+
+    @Test
+    public void biMapTest() {
+//        BiMap的常用实现有：
+//        HashBiMap: key 集合与 value 集合都有 HashMap 实现
+//        EnumBiMap: key 与 value 都必须是 enum 类型
+//        ImmutableBiMap: 不可修改的 BiMap
+        BiMap<String, Integer> bm = HashBiMap.create();
+        bm.put("A", 1);
+        bm.put("B", 2);
+        bm.put("C", 3);
+        bm.put("D", 4);
+        bm.put("E", 5);
+        BiMap<Integer, String> inverseBm = bm.inverse();
+        System.out.println(inverseBm.get(5));
+        System.out.println(inverseBm.get(6));
+    }
+
+    @Test
+    public void mapMakerTest() {
+//        用来构造 ConcurrentHashMap
+        //ConcurrentHashMap with concurrency level 8
+        ConcurrentMap<String, Object> concurrentMap = new MapMaker().concurrencyLevel(8).makeMap();
+//        构造用各种不同 reference 作为 key 和 value 的 Map:
+        //ConcurrentMap with soft reference key and weak reference value
+        ConcurrentMap<String, Object> map2 = new MapMaker().weakValues().makeMap();
+    }
+
+    @Test
+    public void collections2FilterTest() {
+        ImmutableList<Integer> list = ImmutableList.of(4, 12, 5, 2, 6, 15);
+        Collection<Integer> filterCollection =
+                Collections2.filter(list, new Predicate<Integer>() {
+                    @Override
+                    public boolean apply(Integer input) {
+                        return input >= 10;
+                    }
+                });
+        for (Integer i : filterCollection) {
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    public void collections2transformTest() {
+        ImmutableList<String> ofList = ImmutableList.of("a", "b", "a", "d");
+        Collection<String> formatCollection =
+                Collections2.transform(ofList, new Function<String, String>() {
+                    @Override
+                    public String apply(String input) {
+                        return input + "transform";
+                    }
+                });
+        for (String str : formatCollection) {
+            System.out.println(str);
+        }
     }
 }

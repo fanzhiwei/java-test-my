@@ -22,7 +22,7 @@ import static net.fanzhiwei.mylib.OutputUtil.out;
  * Date: 14-5-21
  * Time: 下午4:53
  */
-public class GuavaTest {
+public class GuavaIOTest {
 
     //读取文件ByGuava
     @Test
