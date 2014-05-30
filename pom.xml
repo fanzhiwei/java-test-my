@@ -8,17 +8,16 @@
     <name>mylib Maven Webapp</name>
     <properties>
         <!-- 主要依赖库的版本定义 -->
-
         <!-- Plugin的属性定义 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
         <java.version>1.6</java.version>
-        <guava.version>16.0.1</guava.version>
+        <guava.version>17.0</guava.version>
         <junit.version>4.11</junit.version>
     </properties>
 
-    <prerequisites>
-        <maven>3.0.0</maven>
-    </prerequisites>
+    <!--<prerequisites>-->
+        <!--<maven>3.0.0</maven>-->
+    <!--</prerequisites>-->
 
     <dependencies>
         <dependency>
@@ -32,64 +31,64 @@
             <version>${junit.version}</version>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>mylib</finalName>
-        <plugins>
-            <!-- compiler插件, 设定JDK版本 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <showWarnings>true</showWarnings>
-                </configuration>
-            </plugin>
+    <!--<build>-->
+        <!--<finalName>mylib</finalName>-->
+        <!--<plugins>-->
+            <!--&lt;!&ndash; compiler插件, 设定JDK版本 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.1</version>-->
+                <!--<configuration>-->
+                    <!--<source>${java.version}</source>-->
+                    <!--<target>${java.version}</target>-->
+                    <!--<showWarnings>true</showWarnings>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
-            <!-- war打包插件, 设定war包名称不带版本号 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <warName>${project.artifactId}</warName>
-                </configuration>
-            </plugin>
+            <!--&lt;!&ndash; war打包插件, 设定war包名称不带版本号 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>2.4</version>-->
+                <!--<configuration>-->
+                    <!--<warName>${project.artifactId}</warName>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
-            <!-- test插件, 仅测试名称为*Test的类,使用支持分组测试的surefire-junit47 driver -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <argLine>-Xmx256M</argLine>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>2.16</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+            <!--&lt;!&ndash; test插件, 仅测试名称为*Test的类,使用支持分组测试的surefire-junit47 driver &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<version>2.16</version>-->
+                <!--<configuration>-->
+                    <!--<includes>-->
+                        <!--<include>**/*Test.java</include>-->
+                    <!--</includes>-->
+                    <!--<argLine>-Xmx256M</argLine>-->
+                <!--</configuration>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.apache.maven.surefire</groupId>-->
+                        <!--<artifactId>surefire-junit47</artifactId>-->
+                        <!--<version>2.16</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</plugin>-->
 
-            <!-- resources插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
+            <!--&lt;!&ndash; resources插件 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-resources-plugin</artifactId>-->
+                <!--<version>2.6</version>-->
+            <!--</plugin>-->
 
-            <!-- install插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.1</version>
-            </plugin>
-        </plugins>
-    </build>
+            <!--&lt;!&ndash; install插件 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-install-plugin</artifactId>-->
+                <!--<version>2.5.1</version>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 </project>
