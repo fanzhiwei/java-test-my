@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
  * User: zhiweifan
  * Date: 14-5-30
  * Time: 上午10:57
+ * javabean内省,除了反射之外的另一种动态执行代码的方法
  */
 public class UserBeanHandlerOne {
 
