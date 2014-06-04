@@ -12,5 +12,6 @@ public class OutputUtil {
         } else {
             System.out.println(message + ":" + obj.toString());
         }
+
     }
 }
