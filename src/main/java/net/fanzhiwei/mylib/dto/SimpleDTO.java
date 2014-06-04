@@ -5,7 +5,7 @@ package net.fanzhiwei.mylib.dto;
  * Date: 14-5-26
  * Time: 上午11:37
  */
-public class TestDTO {
+public class SimpleDTO {
     private String str;
 
     public String getStr() {

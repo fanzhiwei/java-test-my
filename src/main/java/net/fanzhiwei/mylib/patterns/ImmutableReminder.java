@@ -40,8 +40,8 @@ public final class ImmutableReminder{
     }
 
     public Date getRemindingDate() {
-//        直接返回对象，会导致参数对象露出，被修改，下次再调用此方法获取时，返回的对象改变
-//        return remindingDate;
+        //直接返回对象，会导致参数对象露出，被修改，下次再调用此方法获取时，返回的对象改变
+        //return remindingDate;
         return (Date) remindingDate.clone();
     }
 }

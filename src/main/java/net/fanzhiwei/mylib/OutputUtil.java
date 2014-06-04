@@ -7,6 +7,10 @@ package net.fanzhiwei.mylib;
  */
 public class OutputUtil {
     public static void out(String message,Object obj) {
-        System.out.println(message + ":" + obj);
+        if (obj == null) {
+            System.out.println(message + ":输出对象为null");
+        } else {
+            System.out.println(message + ":" + obj.toString());
+        }
     }
 }
