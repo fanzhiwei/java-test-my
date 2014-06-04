@@ -1,9 +1,12 @@
 package net.fanzhiwei.mylib.guava;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Optional;
 import org.junit.Test;
 
 import java.util.Set;
+
+import static net.fanzhiwei.mylib.OutputUtil.out;
 
 /**
  * User: zhiweifan
@@ -12,7 +15,7 @@ import java.util.Set;
  */
 public class GuavaOptionalTest {
     @Test
-    public void test1() {
+    public void nullTest() {
         String str;
         if (null instanceof java.lang.Object) {
             System.out.println("null属于java.lang.Object类型");
