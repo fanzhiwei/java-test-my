@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="studentDAO" class="net.fanzhiwei.net.fanzhiwei.spring.scan.dao.impl.StudentDAOImpl">
+    </bean>
+    <bean id="studentService" class="net.fanzhiwei.net.fanzhiwei.spring.scan.service.impl.StudentServiceImpl">
+        <property name="sd" ref="studentDAO"/>
+    </bean>
+    <bean id="studentAction" class="net.fanzhiwei.net.fanzhiwei.spring.scan.action.StudentAction">
+        <property name="ss" ref="studentService"/>
+    </bean>
+</beans>
