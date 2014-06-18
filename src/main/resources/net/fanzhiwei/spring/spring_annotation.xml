@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <!-- 组件模拟@Component, @Service,
+       @Controller,@Repository
+       注入对象的模拟: @Autowired
+    -->
+    <component-scan base-package="net.fanzhiwei.spring.scan"/>
+</beans>
+
+        <!--
+           1.创建各种注解@Service,
+           @Controller,@Repository，@Autowired
+           2.根椐Spring的注解使用方法，将步骤1中的注解设置在类中
+           3.创建spring_annotation.xml文件,就是这个文件
+           4.创建AnnotationXmlApplicationContext
+               a.使用componentscan,扫描base-package指定的包的下面的所有的类,
+                                扫描的结果放在一个map中，map中存放的是<类名（首字母小写）,类产生的对象>
+               b.使用discan方法，遍历map,将map中的一个一个对象取出，查看哪个方法需要进行注入
+                                如果发现该方法需要注入,取出该方法的括号中的参数:Class cc = m.getParameterTypes()[0];
+                               拿着这个参数的cc，再到map中遍历一次，看看map中哪一个对象和这个cc类型一致，
+                               如果发现了类型一致的就进入注入 :m.invoke(obj, new Object[]{o});
+        -->
