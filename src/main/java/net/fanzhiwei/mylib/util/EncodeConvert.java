@@ -41,7 +41,7 @@ public class EncodeConvert {
                 }
             } else {
                 try{
-                    transferFile(fs[i].getAbsolutePath(),fs[i].getAbsolutePath().split(".java")[0] + ".java");
+                    transferFile(fs[i].getAbsolutePath(),fs[i].getAbsolutePath());
                 }catch(Exception e){
                     System.out.println("转换utf8失败");
                 }
