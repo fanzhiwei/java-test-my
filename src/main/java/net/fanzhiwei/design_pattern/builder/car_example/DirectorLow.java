@@ -9,7 +9,7 @@ public class DirectorLow {
 	}
 
 	public void createMap() {
-		System.out.println("创建一个高画质的地图");
+		System.out.println("创建一个低画质的地图");
 		// 创建的顺序很重要 从天空往路面创建
 		builder.createWeather();
 		builder.createHouse();

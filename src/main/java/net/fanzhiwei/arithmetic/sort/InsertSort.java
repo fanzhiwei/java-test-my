@@ -14,6 +14,15 @@ public class InsertSort {
 			for (j = i - 1; j >= 0 && temp < array[j]; j--) {
 				array[j + 1] = array[j];
 			}
+
+//            for (j = i - 1; j >= 0; j--) {
+//                if (temp < array[j]) {
+//                    array[j + 1] = array[j];
+//                } else {
+//                    break;
+//                }
+//            }
+
 			array[j + 1] = temp;
 		}
 	}

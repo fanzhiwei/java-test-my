@@ -216,5 +216,8 @@ public class GuavaCollectionsMapTest {
         for (String str : formatCollection) {
             System.out.println(str);
         }
+        for (String str : formatCollection) {
+            System.out.println(str);
+        }
     }
 }

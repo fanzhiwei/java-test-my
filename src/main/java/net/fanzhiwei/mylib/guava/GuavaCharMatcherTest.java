@@ -1,6 +1,7 @@
 package net.fanzhiwei.mylib.guava;
 
 import com.google.common.base.CharMatcher;
+import com.sun.deploy.util.StringUtils;
 import org.junit.Test;
 
 import static net.fanzhiwei.mylib.OutputUtil.out;
@@ -45,7 +46,7 @@ public class GuavaCharMatcherTest {
          boolean matchesAnyOf(CharSequence sequence): 只要sequence中有任意字符能匹配Matcher,返回true
          boolean matchesAllOf(CharSequence sequence): sequence中所有字符都能匹配Matcher,返回true
          boolean matchesNoneOf(CharSequence sequence): sequence中所有字符都不能匹配Matcher,返回true
-         int indexIn(CharSequence sequence): 返回sequence中匹配到的第一个字符的坐标
+         int indexIn(CharSequence sequence): 返回sequence中匹配到的第一个字符的坐标   使用如 CharMatcher.is('{').indexIn("abdfafefaeffafd{ewfwef}")
          int indexIn(CharSequence sequence, int start): 返回从start开始,在sequence中匹配到的第一个字符的坐标
          int lastIndexIn(CharSequence sequence): 返回sequence中最后一次匹配到的字符的坐标
          int countIn(CharSequence sequence): 返回sequence中匹配到的字符计数
@@ -58,7 +59,6 @@ public class GuavaCharMatcherTest {
          String collapseFrom(CharSequence sequence, char replacement): 将匹配到的组(连续匹配的字符)替换成replacement
          String trimAndCollapseFrom(CharSequence sequence, char replacement): 先trim在replace
          */
-
         String string = "aaabbbcccAAABBB111";
         out("原字符串",string);
         out("两个CharMatcher加or", CharMatcher.inRange('a', 'z').or(CharMatcher.inRange('A', 'Z')).removeFrom(string));
@@ -69,5 +69,13 @@ public class GuavaCharMatcherTest {
         out("获取所有的数字和小写字母",CharMatcher.JAVA_DIGIT.or(CharMatcher.JAVA_LOWER_CASE).retainFrom(string));
         out("获取所有的大写字母",CharMatcher.JAVA_UPPER_CASE.retainFrom(string));
         out("获取所有单字节长度的符号",CharMatcher.SINGLE_WIDTH.retainFrom(string));
+    }
+
+    @Test
+    public void test() {
+        String str = "<dl><dt><font color=\"#000000\" size=\"5\">■</font> 幻影黑</dt><dt><font color=\"#2f2025\" size=\"5\">■</font> 深海蓝</dt><dt><font color=\"#D2D7DB\" size=\"5\">■</font> 水晶银</dt><dt><font color=\"#616f70\" size=\"5\">■</font> 雄鹰灰</dt><dt><font color=\"#FF0000\" size=\"5\">■</font> 红色</dt><dt><font color=\"#FFFFFF\" size=\"5\">■</font> 白色</dt><dt><font color=\"#993300\" size=\"5\">■</font> 棕色</dt></dl>";
+        String str1 = CharMatcher.anyOf("\"<>=/ ").or(CharMatcher.JAVA_LOWER_CASE).removeFrom(str);
+        System.out.println(str1);
+        String[] str2 = str1.split("#");
     }
 }
